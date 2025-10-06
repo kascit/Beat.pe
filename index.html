@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Beat.pe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <div class="title">BEAT PE</div>
+            <div class="subtitle">Press SPACE to start</div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="score" id="score">0</div>
+            
+            <div id="board">
+                <div class="col" data-col="0"><span class="key-hint">A</span></div>
+                <div class="col" data-col="1"><span class="key-hint">S</span></div>
+                <div class="col" data-col="2"><span class="key-hint">D</span></div>
+                <div class="col" data-col="3"><span class="key-hint">F</span></div>
+            </div>
+        </div>
+
+        <!-- Pause Screen -->
+        <div id="pause-screen" class="screen hidden">
+            <div class="pause-text">PAUSED</div>
+            <div class="subtitle">Press SPACE to resume</div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="over-screen" class="screen hidden">
+            <div class="title">GAME OVER</div>
+            <div class="final-score" id="final-score">0</div>
+            <div class="subtitle">Press SPACE to restart</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
