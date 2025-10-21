@@ -1,11 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Beat.pe — Leaderboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
+
+  <div class="leaderboard-wrap">
+    <div class="leaderboard-card">
+      <div class="title small">LEADERBOARD</div>
+      <div class="subtitle">Top 10 Scores</div>
+
+      <div class="controls">
+        <a href="index.html" class="btn">Back to Game</a>
+        <button id="clear-all" class="btn danger">Clear All</button>
+      </div>
+
+      <div id="list" class="score-list"></div>
+      <div id="empty" class="empty-state">No scores yet. Play to get started!</div>
+    </div>
+  </div>
+
+  <script>
+    const KEY = 'beatpe_scores';
+    const list = document.getElementById('list');
+    const empty = document.getElementById('empty');
+    const clearBtn = document.getElementById('clear-all');
+
+    function getScores() {
+      try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+      catch { return []; }
+    }
+
+    function render() {
+      const scores = getScores().sort((a, b) => b.score - a.score).slice(0, 5);
+      list.innerHTML = '';
+      
+      if (!scores.length) {
+        empty.style.display = 'block';
+        clearBtn.disabled = true;
+        return;
+      }
+      
+      empty.style.display = 'none';
+      clearBtn.disabled = false;
+
+      scores.forEach((s, i) => {
+        const row = document.createElement('div');
+        row.className = 'score-row';
+        row.innerHTML = `
+          <div class="sr-rank">${i + 1}</div>
+          <div class="sr-info">
+            <div class="sr-score">${s.score}</div>
+            <div class="sr-time">${new Date(s.time).toLocaleString()}</div>
+          </div>
+          <button class="btn small danger" onclick="deleteScore(${i})">Delete</button>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    window.deleteScore = (i) => {
+      const scores = getScores();
+      scores.splice(i, 1);
+      localStorage.setItem(KEY, JSON.stringify(scores));
+      render();
+    };
+
+    clearBtn.onclick = () => {
+      if (confirm('Clear all scores?')) {
+        localStorage.removeItem(KEY);
+        render();
+      }
+    };
+
+    render();
+  </script>
+
 </body>
 </html>

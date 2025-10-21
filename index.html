@@ -1,45 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beat.pe</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Beat.pe — Play</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="game-container">
-        <!-- Start Screen -->
-        <div id="start-screen" class="screen">
-            <div class="title">BEAT PE</div>
-            <div class="subtitle">Press SPACE to start</div>
-        </div>
+  <div id="game-container">
 
-        <!-- Game Screen -->
-        <div id="game-screen" class="screen hidden">
-            <!-- <div class="score" id="score">0</div> -->
-            
-            <div id="board">
-                <div class="col" data-col="0"><span class="key-hint">A</span></div>
-                <div class="col" data-col="1"><span class="key-hint">S</span></div>
-                <div class="col" data-col="2"><span class="key-hint">D</span></div>
-                <div class="col" data-col="3"><span class="key-hint">F</span></div>
-            </div>
-        </div>
-
-        <!-- Pause Screen -->
-        <div id="pause-screen" class="screen hidden">
-            <div class="pause-text">PAUSED</div>
-            <div class="subtitle">Press SPACE to resume</div>
-        </div>
-
-        <!-- Game Over Screen -->
-        <div id="over-screen" class="screen hidden">
-            <div class="title">GAME OVER</div>
-            <div class="final-score" id="final-score">0</div>
-            <div class="subtitle">Press SPACE to restart</div>
-        </div>
+    <!-- START SCREEN -->
+    <div id="start-screen" class="screen">
+      <div class="title">BEAT PE</div>
+      <button class="btn hidden mobi" onclick="startGame()">Start</button>
+      <div class="subtitle">Press SPACE to start</div>
+      <a href="secondPage.html" class="btn leaderboard-btn">Leaderboard</a>
     </div>
 
-    <script src="script.js"></script>
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen hidden">
+      <div class="topbar">
+        <div id="lives">Lives: 3</div>
+        <div id="score">0</div>
+      </div>
+      <div class="board">
+        <div class="col" data-key="A"><span class="key-hint">A</span></div>
+        <div class="col" data-key="S"><span class="key-hint">S</span></div>
+        <div class="col" data-key="D"><span class="key-hint">D</span></div>
+        <div class="col" data-key="F"><span class="key-hint">F</span></div>
+      </div>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="over-screen" class="screen hidden">
+      <div class="title">GAME OVER</div>
+      <div id="final-score" class="score-large">0</div>
+      <button class="btn hidden mobi" onclick="location.reload()">Play Again</button>
+      <div class="subtitle">Press SPACE to go again</div>
+      <a href="secondPage.html" class="btn">Leaderboard</a>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
