@@ -75,9 +75,7 @@ function nextRound() {
     else nextRound();
   }, lightTime);
 
-  if (score > 0 && score % 500 === 0) {
-    lightTime = Math.max(500, lightTime - 80);
-  }
+  lightTime = Math.max(400, lightTime * 0.99);
 }
 
 function handlePress(index) {
@@ -88,6 +86,7 @@ function handlePress(index) {
   if (index === currentLit) {
     score += 100;
     col.classList.add('success');
+    col.classList.remove('lit')
     setTimeout(() => col.classList.remove('success'), 200);
     clearTimeout(timer);
     update();

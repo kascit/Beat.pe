@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Beat.pe — Leaderboard</title>
+  <title>Leaderboard</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
 
   <div class="leaderboard-wrap">
     <div class="leaderboard-card">
       <div class="title small">LEADERBOARD</div>
-      <div class="subtitle">Top 10 Scores</div>
+      <div class="subtitle">Top 5 Scores</div>
 
       <div class="controls">
         <a href="index.html" class="btn">Back to Game</a>
@@ -56,16 +57,16 @@
             <div class="sr-score">${s.score}</div>
             <div class="sr-time">${new Date(s.time).toLocaleString()}</div>
           </div>
-          <button class="btn small danger" onclick="deleteScore(${i})">Delete</button>
+          <button class="btn small danger" onclick="deleteScore('${s.time}')">Delete</button>
         `;
         list.appendChild(row);
       });
     }
 
-    window.deleteScore = (i) => {
+    window.deleteScore = (time) => {
       const scores = getScores();
-      scores.splice(i, 1);
-      localStorage.setItem(KEY, JSON.stringify(scores));
+      const filtered = scores.filter(s => s.time !== time);
+      localStorage.setItem(KEY, JSON.stringify(filtered));
       render();
     };
 

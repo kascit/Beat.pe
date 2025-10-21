@@ -86,6 +86,7 @@ a {
 .title {
   font-family: var(--font-title);
   font-weight: 900;
+  padding:0 1% 0 0;
   font-size: clamp(4rem, 15vw, 10rem);
   background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
   background-size: 200% 100%;
