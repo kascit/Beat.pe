@@ -32,3 +32,4 @@
 ## Hosting
 
 - Hosted on **GitHub Pages**
+- [Live Here](https://kascit.github.io/Beat.pe/)
